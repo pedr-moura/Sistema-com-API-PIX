@@ -1,3 +1,3 @@
 <?php 
-header('Location: http://localhost/Patopay/login/');
+header('Location: http://localhost/Patopay/home/');
 ?>
