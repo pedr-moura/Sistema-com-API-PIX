@@ -58,6 +58,7 @@ img {
     top: 50%;
 }
 .desc {
+    text-align: center;
     font-weight: bold;
     z-index: 2;
     color: #F3F3F3;

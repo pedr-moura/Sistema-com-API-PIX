@@ -1,4 +1,4 @@
-
+<!-- http://localhost/Patopay/ -->
 <?php 
     session_start();
     include_once "/xampp/htdocs/patopay/function/sorteioFotos.php";
