@@ -1,22 +1,3 @@
-<?php 
-    session_start();
-
-    if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['password']) == true)) {
-        header('Location: http://localhost/Patopay/login/');
-        unset($_SESSION['email']);
-        unset($_SESSION['password']);
-    }else{
-        $usuario = $_SESSION['email'];
-    }
-
-    if (isset($_POST['sair'])) {
-        unset($_SESSION['email']);
-        unset($_SESSION['password']);
-        header('Location: http://localhost/Patopay/login/');
-    }
-    
-    header('Location: http://localhost/Patopay/function/');
-?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -68,19 +49,21 @@
     top: 10%;
 }
 img {
-    max-width: 190px;
+    max-width: 300px;
     width: 30vh;
     z-index: 1;
     position: absolute;
-    right: 1vw;
-    top: 14%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    top: 50%;
 }
 .desc {
+    font-weight: bold;
     z-index: 2;
     color: #F3F3F3;
-    top: 30%;
+    top: 68%;
     position: absolute;
-    font-size: 25px;
+    font-size: 26px;
     width: 90%;
     left: 50%;
     transform: translate(-50%, 0px);
@@ -116,19 +99,21 @@ img {
 }
 
 .action {
+    bottom: 15%;
     width: 240px;
-    position: relative;
+    position: absolute;
     left: 50%;
     transform: translate(-50%,0%);
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
 }
-.action input {
+.action a {
+    text-decoration: none;
     border-radius: 30px;
-    background: none;
+    background: #F6D862;
     border: 2px solid #F3F3F3;
-    font-size: 20px;
+    font-size: 30px;
     color: #F3F3F3;
     padding-top: 5px;
     padding-right: 20px;
@@ -145,6 +130,17 @@ img {
 <div class="title">
     PatoPay
 </div>
+
+<div class="desc">
+    Estamos trabalhando aqui... <br>
+    volte mais tarde
+</div>
  
+<img src="/patopay/css/midia/error.png" alt="">
+
+<div class="action">
+<a href="javascript:history.go(-1)" >Ok</a>
+</div>
+
 </body>
 </html>

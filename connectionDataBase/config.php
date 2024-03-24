@@ -1,9 +1,8 @@
-<?php 
-    $dbHost = "Localhost";
-    $dbUser = "root";
-    $dbPassword = "root";
-    $dbName = "patopay";
+<?php
+$dbHost = "localhost";
+$dbUser = "root";
+$dbPassword = "root";
+$dbName = "patopay";
 
-
-    $conn = new mysqli($dbHost, $dbUser, $dbPassword, $dbName);
+$conn = new mysqli($dbHost, $dbUser, $dbPassword, $dbName);
 ?>
