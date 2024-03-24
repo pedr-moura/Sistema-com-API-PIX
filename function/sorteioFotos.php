@@ -1,10 +1,10 @@
 <?php 
-$granada = "/patopay/css/midia/granada.png";
-$bastão = "/patopay/css/midia/bastão.png";
-$muchaco = "/patopay/css/midia/muchacos.png";
-$pedrada = "/patopay/css/midia/pedrada.png";
-$pistoladupla = "/patopay/css/midia/pistola-dupla.png";
-$pistola = "/patopay/css/midia/pistola.png";
+$granada = "/css/midia/granada.png";
+$bastão = "/css/midia/bastão.png";
+$muchaco = "/css/midia/muchacos.png";
+$pedrada = "/css/midia/pedrada.png";
+$pistoladupla = "/css/midia/pistola-dupla.png";
+$pistola = "/css/midia/pistola.png";
 
 $sorteio = mt_rand(1,6);
 $img = '';

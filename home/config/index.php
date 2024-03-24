@@ -37,7 +37,7 @@
         form {
     width: 100%;
     position: absolute;
-    bottom: 20%;
+    bottom: 16%;
     z-index: 1;
     left: 50%;
     transform: translate(-50%, 0px);
@@ -140,25 +140,26 @@ span {
     top: -20px;
 }
 .box {
+    border: 1px solid;
     z-index: 999999;
     position: absolute;
-    bottom: 20%;
+    top: 28%;
     background: #f3f3f3;
-    left: 50%;
+    left: 60%;
     transform: translate(-50%, 0px);
     padding: 10px;
-    width: 75%;
+    width: 50%;
     max-width: 330px;
-    height: 145px;
-    border-radius: 20px;
+    height: 39px;
+    border-radius: 53px;
 }
 .text p {
-    color: #f6d862;
+    color: #058c2b;
     font-weight: 700;
-    font-size: 33px;
+    font-size: 15px;
     text-align: center;
     position: absolute;
-    bottom: -20px;
+    bottom: -5px;
     width: 95%;
 }
 .countpays{
@@ -173,10 +174,10 @@ span {
 }
 .imggeneration img {
     position: absolute;
-    right: 5px;
-    top: -75px;
-    width: 150px;
-    z-index: 999;
+    left: -96px;
+    width: 124px;
+    z-index: 0;
+    top: -61px;
 }
 .tarja {
     position: absolute;
@@ -184,6 +185,39 @@ span {
     bottom: -30px;
     width: 100%;
     height: 30px;
+}
+
+.box2 {
+    font-size: 20px;
+    display: flex;
+    background: #ffffff;
+    width: 80%;
+    max-width: 300px;
+    left: 50%;
+    transform: translate(-50%, 0px);
+    position: relative;
+    bottom: -16px;
+    padding: 10px;
+    border-radius: 14px;
+    justify-content: space-between;
+    font-weight: 700;
+    color: #757575;
+}
+.select {
+    width: 50%;
+    font-size: 20px;
+    border: none;
+    right: -72px;
+    position: relative;
+    outline: none;
+}
+.label {
+    width: 60%;
+    position: relative;
+    bottom: -16px;
+    left: 24px;
+    margin-top: -7px;
+    color: white;
 }
     </style>
 </head>
@@ -200,40 +234,47 @@ span {
 </div>
 <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
 <div class="action">
-<input type="submit" value="Encerrar sessão" name="sair">
+<input type="submit" value="Voltar" name="back">
 </div>
 </form>
 
-<div class="options">
-    <div class="navgation">
-    <a href="#">
-            <img src="midia/cobrar.png" alt="">
-    </a>
-    </div>
-    <div class="navgation">
-    <a href="config/">
-            <img src="midia/config.png" alt="">
-    </a>
-    </div>
-    <div class="navgation">
-    <a href="#">
-            <img src="midia/extra.png" alt="">
-        </a>
-    </div>
-</div>
+
 
 <div class="box" style="background: <?php echo $object ?>;">
-        <div class="countpays">
-            <p><?php echo $countpays ?></p>
-        </div>
 
         <div class="imggeneration">
             <img src="<?php echo $img?>" alt="">
         </div>
         <div class="text">
-        <p>Patos enviados</p>
+        <p>Preencha seus dados <br>corretamente!</p>
         </div>
 </div>
+
+<form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
+    
+    <p class="label">Sua chave pix:</p>
+    <input type="text" placeholder="Chave Pix" name="pixkey" class="input">
+
+    <p class="label">Seu nome:</p>
+    <input type="text" placeholder="Nome completo" name="pixkey" class="input">
+    
+    <p class="label" style="margin-bottom: 3px;">Tipo de texto:</p>
+    <div class="box2">
+        <select name="tipo" class="select">
+            <option value="amigavel">Amigavel</option>
+            <option value="ironico">Ironico</option>
+        </select>
+    </div>
+    <br>
+        <p class="label" style="margin-bottom: 3px;">Tema:</p>
+        <div class="box2">
+        <select name="theme" class="select">
+            <option value="zero">Claro</option>
+            <option value="um">Escuro</option>
+        </select>
+    </div>
+
+</form>
      
 <div class='tarja' style='background: <?php echo $background?>'>
     <p> </p>

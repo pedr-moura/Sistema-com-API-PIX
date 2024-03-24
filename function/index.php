@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Ops</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -58,6 +58,7 @@ img {
     top: 50%;
 }
 .desc {
+    text-align: center;
     font-weight: bold;
     z-index: 2;
     color: #F3F3F3;
@@ -136,7 +137,7 @@ img {
     volte mais tarde
 </div>
  
-<img src="/patopay/css/midia/error.png" alt="">
+<img src="/css/midia/error.png" alt="">
 
 <div class="action">
 <a href="javascript:history.go(-1)" >Ok</a>

@@ -1,9 +1,8 @@
-
 <?php 
 session_start();
 
-require "/xampp/htdocs/PatoPay/connectionDataBase/config.php";
-include_once "/xampp/htdocs/patopay/function/sorteioFotos.php";
+require "/storage/ssd2/294/22002294/public_html/connectionDataBase/config.php";
+include_once "/storage/ssd2/294/22002294/public_html/function/sorteioFotos.php";
 
 if(isset($_POST['submit'])){
     $email = $_POST['email'];
@@ -22,13 +21,13 @@ if(isset($_POST['submit'])){
     $resultConsult = $stmtConsult->get_result();
 
     if ($resultConsult->num_rows > 0) {
-         header('Location: http://localhost/Patopay/login/');
+         header('Location: https://patopay.000webhostapp.com/login/');
     }else{
         $result = mysqli_query($conn, "INSERT INTO users(email,name,password,count_pays,date_register,pix_key) VALUES ('$email','$name','$password','$countPays','$dateRegister','$pixkey')");
 
         $_SESSION['email'] = $email;
         $_SESSION['password'] = $password;
-         header('Location: http://localhost/Patopay/home/');
+         header('Location: https://patopay.000webhostapp.com/home/');
     }
 }
 
@@ -92,6 +91,7 @@ img {
     top: 14%;
 }
 .desc {
+    display:none;
     z-index: 2;
     color: #F3F3F3;
     top: 30%;
@@ -102,6 +102,7 @@ img {
     transform: translate(-50%, 0px);
 }
 .desc p{
+    display:none;
     margin-top: -30px;
 }
 .input {

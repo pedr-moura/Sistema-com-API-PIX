@@ -1,10 +1,9 @@
-
 <?php 
     session_start();
-    include_once "/xampp/htdocs/patopay/function/sorteioFotos.php";
+    include_once "/storage/ssd2/294/22002294/public_html/function/sorteioFotos.php";
     
     if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['password']) ) {
-        include_once "/xampp/htdocs/PatoPay/connectionDataBase/config.php";
+        include_once "/storage/ssd2/294/22002294/public_html/connectionDataBase/config.php";
 
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -20,16 +19,16 @@
         if ($result->num_rows > 0) {
             $_SESSION['email'] = $email;
             $_SESSION['password'] = $password;
-             header('Location: http://localhost/Patopay/home/');
+             header('Location: /home/');
         }else{
             unset($_SESSION['email']);
             unset($_SESSION['password']);
-             header('Location: http://localhost/Patopay/login/register/');
+             header('Location: register/');
         }
     }
 
     if (isset($_POST['registrar'])){
-        header('Location: http://localhost/Patopay/login/register/');
+        header('Location: register/');
     }
 ?>
 
@@ -101,6 +100,7 @@ img {
     transform: translate(-50%, 0px);
 }
 .desc p{
+    font-size: 20px;
     margin-top: -30px;
 }
 .input {
