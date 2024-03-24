@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<!-- http://localhost/Patopay/ -->
+>>>>>>> 128991cf017bf9e9157c401921ef389785fde241
 <?php 
     session_start();
     include_once "/storage/ssd2/294/22002294/public_html/function/sorteioFotos.php";
