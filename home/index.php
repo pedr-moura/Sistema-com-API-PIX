@@ -14,6 +14,7 @@
         unset($_SESSION['password']);
         header('Location: http://localhost/Patopay/login/');
     }
+    
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +26,7 @@
 </head>
 <body>
 <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
-<input type="submit" name="sair">
+<input type="submit" name="sair" value="Encerrar sessão">
 </form>
 
     <h1>

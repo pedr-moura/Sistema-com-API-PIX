@@ -6,7 +6,4 @@
 
 
     $conn = new mysqli($dbHost, $dbUser, $dbPassword, $dbName);
-
-    if ($conn -> connect_errno) {
-    }
 ?>

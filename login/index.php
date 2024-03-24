@@ -1,27 +1,31 @@
 
 <?php 
     session_start();
-
+    
     if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['password']) ) {
-        require "/xampp/htdocs/PatoPay/connectionDataBase/config.php";
+        include_once "/xampp/htdocs/PatoPay/connectionDataBase/config.php";
 
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password' ";
+        $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+        $stmt = $conn->prepare($sql);
+        
+        $stmt->bind_param("ss", $email, $password);
+        $stmt->execute();
+        
+        $result = $stmt->get_result();
 
-        $result = $conn -> query($sql);
-
-        if (mysqli_num_rows($result) < 0) {
-            unset($_SESSION['email']);
-            unset($_SESSION['password']);
-        } else{
+        if ($result->num_rows > 0) {
             $_SESSION['email'] = $email;
             $_SESSION['password'] = $password;
-            header('Location: http://localhost/Patopay/home/');
+             header('Location: http://localhost/Patopay/home/');
+        }else{
+            unset($_SESSION['email']);
+            unset($_SESSION['password']);
+             header('Location: http://localhost/Patopay/login/register/');
         }
-
-        }
+    }
 ?>
 
 <!DOCTYPE html>
