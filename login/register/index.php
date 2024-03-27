@@ -4,6 +4,26 @@ session_start();
 require "/storage/ssd2/294/22002294/public_html/connectionDataBase/config.php";
 include_once "/storage/ssd2/294/22002294/public_html/function/sorteioFotos.php";
 
+function generateRandomString($length = 8) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $randomCharacter = $characters[rand(0, $charactersLength - 1)];
+
+        while (strpos($randomString, $randomCharacter) !== false) {
+            $randomCharacter = $characters[rand(0, $charactersLength - 1)];
+        }
+
+        $randomString .= $randomCharacter;
+    }
+
+    return $randomString;
+}
+
+$randomString = generateRandomString();
+
 if(isset($_POST['submit'])){
     $email = $_POST['email'];
     $name = $_POST['name'];
@@ -11,24 +31,42 @@ if(isset($_POST['submit'])){
     $countPays = 0;
     $dateRegister = date('d/m/Y');
     $pixkey = $_POST['pixkey'];
-
-    $sqlConsult = "SELECT * FROM users WHERE email = ?";
-    $stmtConsult = $conn->prepare($sqlConsult);
+    $theme = '0';
+    $humor = '0';
     
-    $stmtConsult->bind_param("s", $email);
-    $stmtConsult->execute();
-    
-    $resultConsult = $stmtConsult->get_result();
+    $apikey = $randomString;
 
-    if ($resultConsult->num_rows > 0) {
-         header('Location: https://patopay.000webhostapp.com/login/');
-    }else{
-        $result = mysqli_query($conn, "INSERT INTO users(email,name,password,count_pays,date_register,pix_key) VALUES ('$email','$name','$password','$countPays','$dateRegister','$pixkey')");
+$sqlConsultEmail = "SELECT * FROM users WHERE email = ?";
+$stmtConsultEmail = $conn->prepare($sqlConsultEmail);
+$stmtConsultEmail->bind_param("s", $email);
+$stmtConsultEmail->execute();
+$resultConsultEmail = $stmtConsultEmail->get_result();
 
-        $_SESSION['email'] = $email;
-        $_SESSION['password'] = $password;
-         header('Location: https://patopay.000webhostapp.com/home/');
-    }
+$sqlConsultPixKey = "SELECT * FROM users WHERE pix_key = ?";
+$stmtConsultPixKey = $conn->prepare($sqlConsultPixKey);
+$stmtConsultPixKey->bind_param("s", $pixkey);
+$stmtConsultPixKey->execute();
+$resultConsultPixKey = $stmtConsultPixKey->get_result();
+
+if ($resultConsultEmail->num_rows > 0) {
+    header('Location: https://patopay.000webhostapp.com/login/');
+    exit;
+}
+
+if ($resultConsultPixKey->num_rows > 0) {
+    header('Location: https://patopay.000webhostapp.com/login/');
+    exit; 
+}
+
+$result = mysqli_query($conn, "INSERT INTO users (email, name, password, count_pays, date_register, pix_key, theme, humor, api_key) VALUES ('$email', '$name', '$password', '$countPays', '$dateRegister', '$pixkey', '$theme', '$humor', '$apikey')");
+
+if ($result) {
+    $_SESSION['email'] = $email;
+    $_SESSION['password'] = $password;
+    header('Location: https://patopay.000webhostapp.com/home/');
+} else {
+    echo "Ocorreu um erro ao inserir os dados no banco de dados.";
+}
 }
 
 ?>
@@ -111,7 +149,7 @@ img {
     font-size: 20px;
     width: 100%;
     max-width: 260px;
-    height: 23px;
+    height: 24px;
     padding: 12px;
     border-radius: 30px;
     border: 1.5px solid lightgrey;

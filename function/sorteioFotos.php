@@ -6,13 +6,12 @@ $pedrada = "/css/midia/pedrada.png";
 $pistoladupla = "/css/midia/pistola-dupla.png";
 $pistola = "/css/midia/pistola.png";
 
-$sorteio = mt_rand(1,6);
-$img = '';
+$imagens = array($granada, $bastão, $muchaco, $pedrada, $pistoladupla, $pistola);
 
-if($sorteio == 1){ $img = $granada;}
-if($sorteio == 2){ $img = $bastão;}
-if($sorteio == 3){ $img = $muchaco;}
-if($sorteio == 4){ $img = $pedrada;}
-if($sorteio == 5){ $img = $pistoladupla;}
-if($sorteio == 6){ $img = $pistola;}
+$sorteio = mt_rand(0, count($imagens) - 1);
+$img = $imagens[$sorteio];
+unset($imagens[$sorteio]);
+$imagens = array_values($imagens); 
+
+$img = isset($img) ? $img : '';
 ?>

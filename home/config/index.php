@@ -1,7 +1,7 @@
 <?php 
     session_start();
     include_once "/storage/ssd2/294/22002294/public_html/connectionDataBase/config.php";
-    include_once "/storage/ssd2/294/22002294/public_html/function/classificacaoFotos.php";
+    include_once "/storage/ssd2/294/22002294/public_html/function/responses.php";
 ?>
 
 <!DOCTYPE html>
@@ -34,14 +34,14 @@
     -moz-box-shadow: 0px 21px 75px -12px rgba(0,0,0,0.37);
     box-shadow: 0px 21px 75px -12px rgba(0,0,0,0.37);
         }
-        form {
+form {
     width: 100%;
     position: absolute;
-    bottom: 16%;
+    bottom: 10%;
     z-index: 1;
     left: 50%;
     transform: translate(-50%, 0px);
-        }
+}
         .title {
     text-shadow: 0px 0px 11px rgba(246, 216, 98, 0.32);
     color: #F6D862;
@@ -73,7 +73,7 @@
     font-size: 20px;
     width: 100%;
     max-width: 260px;
-    height: 23px;
+    height: 45px;
     padding: 12px;
     border-radius: 30px;
     border: 1.5px solid lightgrey;
@@ -101,7 +101,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    bottom: -85px;
+    bottom: -40px;
 }
 .action input {
     border-radius: 30px;
@@ -115,6 +115,9 @@
     padding-left: 20px;
     font-weight: bold;
     z-index: 10000001;
+}
+.action input:hover {
+opacity: 0.7;
 }
 .options {
     max-width: 300px;
@@ -154,7 +157,6 @@ span {
     border-radius: 53px;
 }
 .text p {
-    color: #058c2b;
     font-weight: 700;
     font-size: 15px;
     text-align: center;
@@ -180,11 +182,11 @@ span {
     top: -61px;
 }
 .tarja {
-    position: absolute;
+    position: fixed;
     z-index: 10000000;
-    bottom: -30px;
+    bottom: -15px;
     width: 100%;
-    height: 30px;
+    height: 54px;
 }
 
 .box2 {
@@ -204,21 +206,27 @@ span {
     color: #757575;
 }
 .select {
-    width: 50%;
+    width: 90%;
     font-size: 20px;
     border: none;
-    right: -72px;
+    right: 0px;
     position: relative;
     outline: none;
+    background: none;
+    font-weight: 700;
+    color: #757575;
 }
 .label {
+    text-align: center;
     width: 60%;
     position: relative;
     bottom: -16px;
-    left: 24px;
+    left: 50%;
     margin-top: -7px;
     color: white;
+    transform: translate(-50%, 0px);
 }
+
     </style>
 </head>
 <body style='background: <?php echo $background?>'>
@@ -230,22 +238,15 @@ span {
 <div class="obj1" style="background: <?php echo $object ?>;"></div>
 
 <div class="title">
-    Olá, <br> <span><?php echo $firstName?></span>
+    Olá, <br> <span><?php echo $firstName?> </span>
 </div>
-<form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
-<div class="action">
-<input type="submit" value="Voltar" name="back">
-</div>
-</form>
 
-
-
-<div class="box" style="background: <?php echo $object ?>;">
+<div class="box aopacity" style="background: <?php echo $object ?>; border: 1px solid <?php echo $border ?>;">
 
         <div class="imggeneration">
-            <img src="<?php echo $img?>" alt="">
+            <img src="<?php echo $img?>" alt="" class="atoleft">
         </div>
-        <div class="text">
+        <div class="text" style="color: <?php echo $color ?>;">
         <p>Preencha seus dados <br>corretamente!</p>
         </div>
 </div>
@@ -253,28 +254,40 @@ span {
 <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
     
     <p class="label">Sua chave pix:</p>
-    <input type="text" placeholder="Chave Pix" name="pixkey" class="input">
+    <input type="text" placeholder="Chave Pix" name="uploadpixkey" class="input aopacity2" value="<?php echo $pixkey ?>">
 
     <p class="label">Seu nome:</p>
-    <input type="text" placeholder="Nome completo" name="pixkey" class="input">
+    <input type="text" placeholder="Nome completo" name="uploadname" class="input aopacity2" value="<?php echo $fullName ?>">
     
     <p class="label" style="margin-bottom: 3px;">Tipo de texto:</p>
-    <div class="box2">
-        <select name="tipo" class="select">
-            <option value="amigavel">Amigavel</option>
-            <option value="ironico">Ironico</option>
+    <div class="box2 aopacity2">
+        <select name="humor" class="select">
+            <option value="atual">Humor atual (<?php echo $atualhumor; ?>)</option>
+            <option value="zero">Amigável</option>
+            <option value="um">Irônico</option>
+            <option value="dois">Sem frases</option>
         </select>
     </div>
     <br>
         <p class="label" style="margin-bottom: 3px;">Tema:</p>
-        <div class="box2">
-        <select name="theme" class="select">
+        <div class="box2 aopacity2">
+        <select name="uploadtheme" class="select">
+            <option value="atual">Tema atual (<?php echo $atualtheme; ?>) </option>
             <option value="zero">Claro</option>
             <option value="um">Escuro</option>
         </select>
     </div>
 
+<div class="action">
+<a href="https://patopay.000webhostapp.com/home/">
+<input type="button" value="Home">
+</a>
+<input type="submit" value="Atualizar" name="update" style="margin-left: 5px; background: #F6D862; color: <?php echo $button_color;?>;">
+</div>
+
 </form>
+
+
      
 <div class='tarja' style='background: <?php echo $background?>'>
     <p> </p>

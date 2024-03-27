@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-<!-- http://localhost/Patopay/ -->
->>>>>>> 128991cf017bf9e9157c401921ef389785fde241
 <?php 
     session_start();
     include_once "/storage/ssd2/294/22002294/public_html/function/sorteioFotos.php";
@@ -25,9 +21,25 @@
             $_SESSION['password'] = $password;
              header('Location: /home/');
         }else{
-            unset($_SESSION['email']);
-            unset($_SESSION['password']);
-             header('Location: register/');
+            
+    $sqlConsult = "SELECT * FROM users WHERE email = ?";
+    $stmtConsult = $conn->prepare($sqlConsult);
+    
+    $stmtConsult->bind_param("s", $email);
+    $stmtConsult->execute();
+    
+    $resultConsult = $stmtConsult->get_result();
+
+    if ($resultConsult->num_rows > 0) {
+         header('Location: https://patopay.000webhostapp.com/login/');
+    }else{
+        unset($_SESSION['email']);
+        unset($_SESSION['password']);
+        header('Location: register/');  
+    }
+
+             
+             
         }
     }
 
@@ -102,6 +114,7 @@ img {
     width: 90%;
     left: 50%;
     transform: translate(-50%, 0px);
+    max-width: 340px;
 }
 .desc p{
     font-size: 20px;
@@ -113,7 +126,7 @@ img {
     font-size: 20px;
     width: 100%;
     max-width: 260px;
-    height: 23px;
+    height: 24px;
     padding: 12px;
     border-radius: 30px;
     border: 1.5px solid lightgrey;
@@ -155,6 +168,19 @@ img {
     padding-left: 20px;
     font-weight: bold;
 }
+.aopacity{
+        animation: aopacity 0.5s ease 0s 1 normal forwards;
+    }
+    @keyframes aopacity {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
     </style>
 </head>
 <body>
@@ -167,7 +193,8 @@ img {
         <h1>Olá!</h1>
         <p>Bem vindo ao jeito mais <b>simpático</b> de cobrar alguém.</p>
     </div>
-    <img src="<?php echo $img?>" alt="">
+    <img src="<?php echo $img?>" alt="" class="aopacity">
+
     <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
         <input type="text" placeholder="Email" name="email" class="input" ><br><br>
         <input type="password" name="password" id="" placeholder="Senha" class="input" ><br><br>

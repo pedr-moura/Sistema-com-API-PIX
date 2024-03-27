@@ -1,48 +1,7 @@
 <?php 
     session_start();
-<<<<<<< HEAD
     include_once "/storage/ssd2/294/22002294/public_html/connectionDataBase/config.php";
-    include_once "/storage/ssd2/294/22002294/public_html/function/classificacaoFotos.php";
-=======
-    include_once "/xampp/htdocs/PatoPay/connectionDataBase/config.php";
-    include_once "/xampp/htdocs/patopay/function/classificacaoFotos.php";
-
-    if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['password']) == true)) {
-        header('Location: http://localhost/Patopay/login/');
-        unset($_SESSION['email']);
-        unset($_SESSION['password']);
-    }else{
-        $usuario = $_SESSION['email'];
-    }
-
-    if (isset($_POST['sair'])) {
-        unset($_SESSION['email']);
-        unset($_SESSION['password']);
-        header('Location: http://localhost/Patopay/login/');
-    }
-
-
-    $sqlNome = "SELECT * FROM users WHERE email = ?";
-    $stmt = $conn->prepare($sqlNome);
-    $stmt->bind_param("s", $usuario);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    $userData = $result->fetch_assoc(); 
-    if ($userData) {
-        $fullName = $userData['name']; 
-        $firstName = explode(' ', $fullName)[0];
-
-        $countpays = $userData['count_pays']; 
-
-        if($countpays == 0){ $img = $granada;}
-        if($countpays > 0){ $img = $bastão;}
-        if($countpays > 3){ $img = $pedrada;}
-        if($countpays > 8){ $img = $muchaco;}
-        if($countpays > 15){ $img = $pistola;}
-        if($countpays > 20){ $img = $pistoladupla;}
-    }
->>>>>>> 128991cf017bf9e9157c401921ef389785fde241
+    include_once "/storage/ssd2/294/22002294/public_html/function/responses.php";
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
     <style>
         html, body {
     overflow-x: hidden;
@@ -114,7 +74,7 @@
     font-size: 20px;
     width: 100%;
     max-width: 260px;
-    height: 23px;
+    height: 24px;
     padding: 12px;
     border-radius: 30px;
     border: 1.5px solid lightgrey;
@@ -142,10 +102,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-<<<<<<< HEAD
     bottom: -85px;
-=======
->>>>>>> 128991cf017bf9e9157c401921ef389785fde241
 }
 .action input {
     border-radius: 30px;
@@ -159,6 +116,9 @@
     padding-left: 20px;
     font-weight: bold;
     z-index: 10000001;
+}
+.action input:hover {
+opacity: 0.8;
 }
 .options {
     max-width: 300px;
@@ -177,6 +137,9 @@
     width: 70px;
     border-radius: 20px;
     filter: drop-shadow(2px 12px 50px #f3f3f3);
+}
+.navgation img:hover {
+opacity: 0.8;
 }
 span {
     font-size: 50px;
@@ -199,11 +162,12 @@ span {
 .text p {
     color: #f6d862;
     font-weight: 700;
-    font-size: 33px;
+    font-size: 30px;
     text-align: center;
     position: absolute;
     bottom: -20px;
     width: 95%;
+        text-shadow: 0px 0px 11px rgba(246, 216, 98, 0.32);
 }
 .countpays{
     z-index: 1;
@@ -214,6 +178,7 @@ span {
     text-align: center;
     font-weight: 700;
     color: #f6d862;
+    text-shadow: 0px 0px 11px rgba(246, 216, 98, 0.32);
 }
 .imggeneration img {
     position: absolute;
@@ -223,76 +188,16 @@ span {
     z-index: 999;
 }
 .tarja {
-    position: absolute;
+    position: fixed;
     z-index: 10000000;
-    bottom: -30px;
+    bottom: -15px;
     width: 100%;
-    height: 30px;
+    height: 54px;
 }
-.options {
-    display: flex;
-    left: 50%;
-    position: absolute;
-    top: 40%;
-    width: 75%;
-    transform: translate(-50%, 0px);
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
-    z-index: 9999;
-}
-.navgation img {
-    width: 70px;
-    border-radius: 20px;
-    filter: drop-shadow(2px 12px 50px #f3f3f3);
-}
-span {
-    font-size: 50px;
-    position: relative;
-    top: -26px;
-}
-.box {
-    position: absolute;
-    bottom: 240px;
-    background: #f3f3f3;
-    left: 50%;
-    transform: translate(-50%, 0px);
-    padding: 10px;
-    width: 75%;
-    max-width: 330px;
-    height: 145px;
-    border-radius: 20px;
-}
-.text p{
-    color: #f6d862;
-    font-weight: 700;
-    font-size: 40px;
-    text-align: center;
-    position: absolute;
-    bottom: -20px;
-    width: 95%;
-}
-.countpays{
-    font-size: 90px;
-    position: absolute;
-    top: -90px;
-    width: 150px;
-    text-align: center;
-    font-weight: 700;
-    color: #f6d862;
-}
-.imggeneration img {
-    position: absolute;
-    right: 5px;
-    top: -75px;
-    width: 150px;
-    z-index: 999;
-}
+   
     </style>
 </head>
 <body style='background: <?php echo $background?>'>
-    
-
 
 <div class='tela'>
     
@@ -301,73 +206,46 @@ span {
 <div class="title">
     Olá, <br> <span><?php echo $firstName?></span>
 </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 128991cf017bf9e9157c401921ef389785fde241
 <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
 <div class="action">
 <input type="submit" value="Encerrar sessão" name="sair">
 </div>
 </form>
 
-<div class="options">
-<<<<<<< HEAD
+<div class="options aopacity">
     <div class="navgation">
-    <a href="#">
+        <button onclick="window.location.href='cobrar/'" style="background: none; border: none;">
             <img src="midia/cobrar.png" alt="">
-    </a>
+        </button>
     </div>
     <div class="navgation">
-    <a href="config/">
-            <img src="midia/config.png" alt="">
-    </a>
+        <button onclick="window.location.href='config/'" style="background: none; border: none;">
+            <img src="midia/config.png" alt="Configurações">
+        </button>
     </div>
     <div class="navgation">
-    <a href="#">
-=======
-
-    <div class="navgation">
-        <a href="">
-            <img src="midia/cobrar.png" alt="">
-        </a>
-    </div>
-    <div class="navgation">
-    <a href="">
-            <img src="midia/config.png" alt="">
-        </a>
-    </div>
-    <div class="navgation">
-    <a href="">
->>>>>>> 128991cf017bf9e9157c401921ef389785fde241
+        <button onclick="window.location.href='#'" style="background: none; border: none;">
             <img src="midia/extra.png" alt="">
-        </a>
+        </button>
     </div>
 </div>
 
-<<<<<<< HEAD
-<div class="box" style="background: <?php echo $object ?>;">
-=======
-<div class="box">
->>>>>>> 128991cf017bf9e9157c401921ef389785fde241
+<div class="box aopacity" style="background: <?php echo $object ?>;">
         <div class="countpays">
             <p><?php echo $countpays ?></p>
         </div>
 
-        <div class="imggeneration">
+        <div class="imggeneration atoright">
             <img src="<?php echo $img?>" alt="">
         </div>
         <div class="text">
         <p>Patos enviados</p>
         </div>
-<<<<<<< HEAD
 </div>
      
 <div class='tarja' style='background: <?php echo $background?>'>
     <p> </p>
 </div>
-=======
->>>>>>> 128991cf017bf9e9157c401921ef389785fde241
 </div>
 </body>
 </html>
