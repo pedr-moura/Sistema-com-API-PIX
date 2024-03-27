@@ -16,13 +16,7 @@ $payLoadQRCode = $payloadPix->getPayLoad();
 
 
 $payloadJson = json_encode([
-    'pix_key' => $payloadPix->getPixKey(),
-    'merchant_name' => $payloadPix->getMerchantName(),
-    'merchant_city' => $payloadPix->getMerchantCity(),
-    'amount' => $payloadPix->getAmount(),
-    'description' => $payloadPix->getDescription(),
-    'txid' => $payloadPix->getTxid(),
-    'payload_code' => $payLoadQRCode // Use $payLoadQRCode instead of $payloadPix
+    'payload_code' => $payLoadQRCode 
 ]);
 
 echo $payloadJson;
