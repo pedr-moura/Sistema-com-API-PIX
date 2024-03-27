@@ -107,11 +107,16 @@ ou
 
 Para criar um QR Code PIX para uma cobrança de Pedro no valor de R$ 100,00, substituindo o comentário gerado pelo sistema, você pode fazer uma requisição para:
 
+
 GET https://patopay.000webhostapp.com/home/cobrar/createPay/api/?api_key=4pQHqExD&payname=Pedro&payvalue=100&cobrancaSorteada=seu+texto+aqui
+
 Isso retornará uma página pronta que pode ser exibida a qualquer pessoa, mesmo que não tenha cadastro ou sessão ativa no sistema.
 
 
+
+
 GET https://patopay.000webhostapp.com/home/cobrar/createPay/api/json/?api_key=4pQHqExD&payname=Pedro&payvalue=100
+
 Isso retornará uma estrutura Json com o código pix.
 
 
