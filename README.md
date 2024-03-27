@@ -123,7 +123,7 @@ Isso retornará uma página pronta que pode ser exibida a qualquer pessoa, mesmo
 
 Para criar um Code PIX para uma cobrança de Pedro no valor de R$ 100,00, você pode fazer uma requisição para:
 
-GET https://patopay.000webhostapp.com/home/cobrar/createPay/api/json/?api_key=4pQHqExD&payname=Pedro&payvalue=100
+GET https://patopay.000webhostapp.com/home/cobrar/createPay/api/json/?api_key=4pQHqExD&payvalue=100
 
 Isso retornará uma estrutura Json com o código pix.
 
