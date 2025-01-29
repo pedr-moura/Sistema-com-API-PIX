@@ -52,7 +52,7 @@ git clone https://github.com/pedr-moura/PatoPay.git
 
 6. Após a confirmação, um link será gerado com o QR Code PIX requisitado.
 
-## Diagrama de Arquitetura
+## Diagrama de Arquitetura (2023)
 
 ```mermaid
 sequenceDiagram
